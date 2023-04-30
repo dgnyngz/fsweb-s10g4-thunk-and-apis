@@ -68,7 +68,7 @@ export default function App() {
           <div className="flex flex-col gap-3">
             {favs.length > 0 ? (
               favs.map((item) => (
-                <FavItem key={item.id} id={item.id} title={item.activity} />
+                <FavItem key={item.id} id={item.id} title={item} />
               ))
             ) : (
               <div className="bg-white p-6 text-center shadow-md">

@@ -26,12 +26,10 @@ function readFavsFromLocalStorage() {
 export function myReducer(state = initial, action) {
   switch (action.type) {
     case FAV_ADD:
-      let varMi = state.favs.every((item) => item.id !== action.payload.id);
-      const NewFavList = varMi ? [state.favs] : [...state.favs, action.payload];
-      toast("Favorilere eklendi!");
-      writeFavsToLocalStorage(NewFavList);
-      return { ...state, favs: NewFavList };
-
+      return {
+        ...state,
+        favs: [...state.favs, state.current],
+      };
     case FAV_REMOVE:
       const NewRemFavList = state.favs.filter(
         (item) => item.id !== action.payload
@@ -51,7 +49,7 @@ export function myReducer(state = initial, action) {
       return { ...state, loading: false, error: action.payload };
 
     case GET_FAVS_FROM_LS:
-      return { ...state, favs: readFavsFromLocalStorage() || [] };
+      return { ...state };
 
     default:
       return state;
